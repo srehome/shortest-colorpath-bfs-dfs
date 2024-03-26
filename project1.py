@@ -20,10 +20,10 @@ grid_colors2 = [
     ["wh", "or", "or", "or", "gr", "gr", "pi", "gr"]
 ]
 
-start_state = (0, 3)  #top right
-goal_state = (3, 0)  #bottom left
-start_state2 = (0, 7)
-goal_state2 = (7, 0)
+grid_length = 8
+start_state = (0, grid_length-1)  #top right
+goal_state = (grid_length-1, 0)  #bottom left
+
 
 def move(current_color, next_color):
     if current_color == 'wh' or next_color == 'wh': #lets it go from white (start/goal) to any color and vice versa
@@ -36,7 +36,7 @@ def get_neighbors(x, y):
     neighbors = []
     for dx, dy in directions:
         nx, ny = x + dx, y + dy
-        if 0 <= nx < 8 and 0 <= ny < 8:         #if square is within the bounds of the grid
+        if 0 <= nx < grid_length and 0 <= ny < grid_length:         #if square is within the bounds of the grid
             neighbors.append((nx, ny))
     return neighbors
 

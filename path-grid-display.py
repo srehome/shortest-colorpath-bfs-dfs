@@ -10,12 +10,12 @@ BLOCK_HEIGHT = round(SCREEN_HEIGHT/GRID_LENGTH)
 BLOCK_WIDTH = round(SCREEN_WIDTH/GRID_LENGTH)
 
 BLACK = (0, 0, 0)
-ORANGE = (219, 118, 0)
-BRIGHTORANGE = (249, 131, 4)
+ORANGE = (252, 103, 28)
+BRIGHTORANGE = (254, 159, 0)
 GREEN = (2, 168, 2)
-BRIGHTGREEN = (8, 209, 8)
+BRIGHTGREEN = (7, 250, 7)
 PURPLE = (132, 2, 168)
-BRIGHTPURPLE = (213, 61, 255)
+BRIGHTPURPLE = (220, 94, 255)
 PINK = (227, 25, 176)
 BLUE = (4, 106, 222)
 WHITE = (255, 255, 255)
@@ -60,8 +60,8 @@ def draw_grid(surface, grid_colors):
         pygame.draw.line(surface, BLACK, (0, new_height), (SCREEN_WIDTH, new_height), 1)
         pygame.draw.line(surface, BLACK, (new_width, 0), (new_width, SCREEN_HEIGHT), 1)
 
-def get_optimal_path():
-    all_bfs_paths = algorithms.bfs(algorithms.start_state2, algorithms.goal_state2, algorithms.grid_colors2)
+def get_optimal_path(grid_colors):
+    all_bfs_paths = algorithms.bfs(algorithms.start_state, algorithms.goal_state, grid_colors)
     bfs_shortest_path = None
     bfs_shortest_path_length = None
 
@@ -72,7 +72,7 @@ def get_optimal_path():
                 bfs_shortest_path_length = len(bfs_shortest_path)
     return bfs_shortest_path
 
-def gameloop(surface):
+def gameloop(surface, grid_colors):
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -83,13 +83,13 @@ def gameloop(surface):
                     pygame.quit()
                     sys.exit()
                 if event.key == pygame.K_SPACE:
-                    optimal_path = get_optimal_path()
+                    optimal_path = get_optimal_path(grid_colors)
                     for node in optimal_path:
-                        if algorithms.grid_colors2[node[0]][node[1]] != "wh":
-                            algorithms.grid_colors2[node[0]][node[1]] = "b" + algorithms.grid_colors2[node[0]][node[1]]
-        draw_grid(surface, algorithms.grid_colors2)
+                        if grid_colors[node[0]][node[1]] != "wh":
+                            grid_colors[node[0]][node[1]] = "b" + grid_colors[node[0]][node[1]]
+        draw_grid(surface, grid_colors)
         pygame.display.update()
 
 
 surface = initialize_game()
-gameloop(surface)
+gameloop(surface, algorithms.grid_colors2)
