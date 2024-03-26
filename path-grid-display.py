@@ -87,6 +87,9 @@ def gameloop(surface, grid_colors):
                     for node in optimal_path:
                         if grid_colors[node[0]][node[1]] != "wh":
                             grid_colors[node[0]][node[1]] = "b" + grid_colors[node[0]][node[1]]
+                        draw_grid(surface, grid_colors)
+                        pygame.display.update()
+                        pygame.time.delay(250)    
         draw_grid(surface, grid_colors)
         pygame.display.update()
 
