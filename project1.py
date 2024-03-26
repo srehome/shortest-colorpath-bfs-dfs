@@ -3,21 +3,21 @@ from collections import deque
 
 #create the colorgrid game board
 grid_colors = [
-    ["orange", "orange", "orange", "white"],
-    ["pink", "orange", "purple", "green"],
-    ["orange", "purple", "red", "blue"],
-    ["white", "purple", "pink", "green"]
+    ["or", "or", "or", "wh"],
+    ["pi", "or", "pu", "gr"],
+    ["or", "pu", "pi", "bl"],
+    ["wh", "pu", "pi", "gr"]
 ]
 
 grid_colors2 = [
-    ["orange", "orange", "orange", "orange", "orange", "orange", "orange", "white"],
-    ["pink", "orange", "purple", "green", "pink", "orange", "purple", "green"],
-    ["orange", "purple", "blue", "blue", "orange", "purple", "green", "blue"],
-    ["orange", "purple", "pink", "green", "blue", "purple", "pink", "green"],
-    ["orange", "orange", "orange", "orange", "purple", "orange", "orange", "green"],
-    ["green", "green", "purple", "purple", "orange", "orange", "purple", "green"],
-    ["green", "purple", "green", "green", "orange", "purple", "green", "blue"],
-    ["white", "orange", "orange", "orange", "green", "green", "pink", "green"]
+    ["or", "or", "or", "or", "or", "or", "or", "wh"],
+    ["pi", "or", "pu", "gr", "pi", "or", "pu", "gr"],
+    ["or", "pu", "bl", "bl", "or", "pu", "gr", "bl"],
+    ["or", "pu", "pi", "gr", "bl", "pu", "pi", "gr"],
+    ["or", "or", "or", "or", "pu", "or", "or", "gr"],
+    ["gr", "gr", "pu", "pu", "or", "or", "pu", "gr"],
+    ["gr", "pu", "gr", "gr", "or", "pu", "gr", "bl"],
+    ["wh", "or", "or", "or", "gr", "gr", "pi", "gr"]
 ]
 
 start_state = (0, 3)  #top right
@@ -26,7 +26,7 @@ start_state2 = (0, 7)
 goal_state2 = (7, 0)
 
 def move(current_color, next_color):
-    if current_color == 'white' or next_color == 'white': #lets it go from white (start/goal) to any color and vice versa
+    if current_color == 'wh' or next_color == 'wh': #lets it go from white (start/goal) to any color and vice versa
         return True
     else: #keeps it on the same color path
         return current_color == next_color
@@ -89,7 +89,7 @@ def dfs(start, goal, grid_colors):
                 stack.append((neighbor, dfs_path + [neighbor], next_color))
 
     return paths    #return paths
-
+"""
 #all_dfs_paths = dfs(start_state, goal_state, grid_colors) 
 all_dfs_paths = dfs(start_state2, goal_state2, grid_colors2)
 dfs_shortest_path = None
@@ -134,4 +134,4 @@ else:
 
 print("BFS---------")
 
-
+"""
