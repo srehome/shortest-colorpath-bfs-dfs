@@ -85,7 +85,7 @@ def gameloop(surface, grid_colors):
                 if event.key == pygame.K_SPACE:
                     optimal_path = get_optimal_path(grid_colors)
                     for node in optimal_path:
-                        if grid_colors[node[0]][node[1]] != "wh":
+                        if grid_colors[node[0]][node[1]] != "wh" and not grid_colors[node[0]][node[1]].startswith("b"):
                             grid_colors[node[0]][node[1]] = "b" + grid_colors[node[0]][node[1]]
                         draw_grid(surface, grid_colors)
                         pygame.display.update()
