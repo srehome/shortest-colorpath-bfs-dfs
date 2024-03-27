@@ -20,6 +20,21 @@ grid_colors2 = [
     ["wh", "or", "or", "or", "gr", "gr", "pi", "gr"]
 ]
 
+grid_colors3 = [
+    ["or", "or", "or", "or", "or", "or", "or", "or", "or", "or", "or", "wh"],
+    ["pi", "or", "pu", "gr", "pi", "or", "or", "gr", "bl", "pu", "pu", "gr"],
+    ["or", "pu", "pu", "pu", "or", "pu", "pu", "pu", "pu", "gr", "gr", "bl"],
+    ["or", "pu", "or", "bl", "pu", "pu", "pi", "pi", "pi", "gr", "gr", "gr"],
+    ["or", "or", "pu", "or", "pu", "pu", "pi", "or", "or", "or", "gr", "gr"],
+    ["gr", "pu", "or", "pi", "or", "or", "pu", "pu", "gr", "gr", "gr", "bl"],
+    ["or", "pu", "or", "gr", "or", "or", "pi", "gr", "pu", "gr", "bl", "bl"],
+    ["bl", "or", "pu", "or", "gr", "gr", "bl", "gr", "pu", "pu", "bl", "or"],
+    ["wh", "or", "pu", "gr", "gr", "gr", "pi", "gr", "pu", "pu", "bl", "or"],
+    ["or", "pu", "gr", "or", "pu", "gr", "gr", "gr", "pu", "pu", "bl", "or"],
+    ["pu", "or", "gr", "or", "pu", "gr", "pi", "bl", "pu", "pu", "bl", "or"],
+    ["wh", "gr", "or", "or", "gr", "gr", "pi", "bl", "pu", "pu", "bl", "or"],
+]
+
 grid_length = 8
 start_state = (0, grid_length-1)  #top right
 goal_state = (grid_length-1, 0)  #bottom left
