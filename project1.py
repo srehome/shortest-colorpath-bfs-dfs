@@ -77,7 +77,11 @@ def bfs(start, goal, grid_colors):
             #if not in visited, not in queue and color allowed
             if neighbor not in bfs_visited and not in_frontier(queue, neighbor) and move(current_color, next_color):
                 if neighbor == goal:                                            #if child-node is goal
-                    paths.append((current_color, bfs_path + [neighbor]))        #return path to goal
+                    if paths == None:
+                        paths.append((current_color, bfs_path + [neighbor]))        #return path to goal
+                    else:
+                        if not in_frontier(paths, current_color):                   #check if paths already has optimal path for this color
+                            paths.append((current_color, bfs_path + [neighbor])) 
                 else:
                     queue.append((neighbor, bfs_path + [neighbor], next_color))     #otherwise add child-node to queue
 
