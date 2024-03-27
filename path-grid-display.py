@@ -60,8 +60,35 @@ def draw_grid(surface, grid_colors):
         pygame.draw.line(surface, BLACK, (0, new_height), (SCREEN_WIDTH, new_height), 1)
         pygame.draw.line(surface, BLACK, (new_width, 0), (new_width, SCREEN_HEIGHT), 1)
 
+def dfs_paths(grid_colors):
+    print("DFS---------")
+    all_dfs_paths = algorithms.dfs(algorithms.start_state, algorithms.goal_state, grid_colors)
+    dfs_shortest_path = None
+    dfs_shortest_path_length = None
+    dfs_shortest_path_color = None
+
+    if all_dfs_paths:
+        for color, dfs_path in all_dfs_paths:
+            if dfs_shortest_path_length == None or len(dfs_path) < dfs_shortest_path_length:
+                dfs_shortest_path = dfs_path
+                dfs_shortest_path_length = len(dfs_shortest_path)
+                dfs_shortest_path_color = color
+        print(f"Shortest path: {dfs_shortest_path} with length {dfs_shortest_path_length} and color {dfs_shortest_path_color}")
+    else:
+        print("No path found")
+
+    for color, path in all_dfs_paths:
+        print(f"Path: {path} Length: {len(path)} Color: {color}")
+    print("DFS---------")
+
 def get_optimal_path(grid_colors):
     all_bfs_paths = algorithms.bfs(algorithms.start_state, algorithms.goal_state, grid_colors)
+
+    print("BFS---------")
+    for color, path in all_bfs_paths:
+        print(f"Path: {path} Length: {len(path)} Color: {color}")
+    print("BFS---------")
+
     bfs_shortest_path = None
     bfs_shortest_path_length = None
 
@@ -84,12 +111,16 @@ def gameloop(surface, grid_colors):
                     sys.exit()
                 if event.key == pygame.K_SPACE:
                     optimal_path = get_optimal_path(grid_colors)
-                    for node in optimal_path:
-                        if grid_colors[node[0]][node[1]] != "wh" and not grid_colors[node[0]][node[1]].startswith("b"):
-                            grid_colors[node[0]][node[1]] = "b" + grid_colors[node[0]][node[1]]
-                        draw_grid(surface, grid_colors)
-                        pygame.display.update()
-                        pygame.time.delay(250)    
+                    dfs_paths(grid_colors)
+                    if optimal_path:
+                        for node in optimal_path:
+                            if grid_colors[node[0]][node[1]] != "wh" and not grid_colors[node[0]][node[1]].startswith("b"):
+                                grid_colors[node[0]][node[1]] = "b" + grid_colors[node[0]][node[1]]
+                            draw_grid(surface, grid_colors)
+                            pygame.display.update()
+                            pygame.time.delay(250)
+                    else:
+                        print("No paths to goal found.")
         draw_grid(surface, grid_colors)
         pygame.display.update()
 
